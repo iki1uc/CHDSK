@@ -16,3 +16,13 @@ const ID_CHDSK_81E = {
         return this.symbol + "  " + this.ascii;
     }
 };
+
+const WHIRL = "🌀";
+const WHIRL_ASCII = "@))>~~";
+console.log(WHIRL + " CHDSK stabilisiert.");
+NCHUB.register("CHDSK_81E", ID_CHDSK_81E);
+CHDSK_81E
+Symbol: 🌀
+Level: 81
+Rolle: Vater‑Cache‑Achse
+Status: Stabil
