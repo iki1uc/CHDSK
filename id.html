@@ -1,25 +1,69 @@
-<div class="id-chdsk">
-    <h2>CHDSK – 81E Vater‑Cache</h2>
-    <p class="symbol">🌀</p>
+<div class="id-chdsk-81e">
+    <h2 class="title">CHDSK <span class="badge">81E</span></h2>
 
-    <pre class="math">
-Absorber: A(D) = D_raw
-HDF:      H(D) = compress(D_raw)
-Transfer: T(D_stable → POOL)
-Stabil:   lim D_noise → 0
-    </pre>
+    <div class="whirl">🌀</div>
 
-    <p>CHDSK nimmt allen Modulen die Fehler ab wie ein Bereich‑Vater.</p>
+    <div class="section">
+        <h3>Mathematische Identität</h3>
+        <pre class="math">
+Absorber:  A(D) = D_raw
+HDF:       H(D) = compress(D_raw)
+Transfer:  T(D_stable → POOL)
+Stabil:    lim D_noise → 0
+        </pre>
+    </div>
+
+    <div class="section">
+        <p class="motto">„Ich nehme die Fehler, bevor sie entstehen.“</p>
+        <p class="desc">CHDSK ist die Vater‑Cache‑Achse der OCTA‑Struktur.  
+        Sie absorbiert Fehler, stabilisiert Daten und schützt alle Module.</p>
+    </div>
 </div>
-const ID_CHDSK_81E = {
-    name: "CHDSK – Vater‑Cache‑Achse",
-    symbol: "🌀",
-    codeSymbol: "@))>~~",
-    math: {
-        absorber: "A(D) = D_raw",
-        hdf: "H(D) = compress(D_raw)",
-        transfer: "T(D_stable → POOL)",
-        stability: "lim D_noise → 0"
-    },
-    motto: "Ich nehme die Fehler, bevor sie entstehen."
-};
+
+<style>
+.id-chdsk-81e {
+    background:#0d0d0d;
+    color:#e6e6e6;
+    padding:25px;
+    border-radius:12px;
+    border:1px solid #333;
+    font-family:Arial, sans-serif;
+    max-width:600px;
+}
+.title {
+    font-size:28px;
+    color:#4af;
+    margin-bottom:10px;
+}
+.badge {
+    background:#4af;
+    color:#000;
+    padding:3px 8px;
+    border-radius:6px;
+    font-size:16px;
+}
+.whirl {
+    font-size:48px;
+    text-align:center;
+    margin:20px 0;
+}
+.section {
+    margin-top:20px;
+}
+.math {
+    background:#000;
+    padding:15px;
+    border-radius:8px;
+    border:1px solid #333;
+    font-size:15px;
+}
+.motto {
+    font-style:italic;
+    font-size:18px;
+    margin-bottom:10px;
+}
+.desc {
+    font-size:16px;
+    line-height:1.4;
+}
+</style>
