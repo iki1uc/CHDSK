@@ -2,41 +2,92 @@
 <html lang="de">
 <head>
 <meta charset="UTF-8">
-<title>ROM · Axiom‑12 · Archiv</title>
+<title>CHDSK · Axiom‑5 · Fehlerabsorber</title>
 
 <style>
-body { background:#000; color:#0f0; font-family:monospace; padding:40px; }
-pre { background:#111; padding:20px; border-left:3px solid #0f0; }
+body { background:#000; color:#e6e6e6; font-family:monospace; padding:40px; }
+h1 { color:#4af; text-align:center; }
+
+.box {
+    background:#0d0d0d;
+    padding:25px;
+    border-radius:12px;
+    border:1px solid #333;
+    max-width:700px;
+    margin:auto;
+}
+
+pre {
+    background:#000;
+    padding:15px;
+    border-radius:8px;
+    border:1px solid #333;
+    margin-top:20px;
+}
+
+.whirl {
+    font-size:48px;
+    text-align:center;
+    margin:20px 0;
+}
 </style>
+
+<script type="module">
+import { ID_CHDSK_81E } from "./axiom.js";
+import { ROMModule } from "./ROM.module.js";
+import { ROM_archive } from "./ROM.archive.js";
+
+const rom = new ROMModule();
+
+// Beispiel-Datenstrom
+const D_raw = 77;
+const D_noise = 12;
+
+// CHDSK Absorber
+const D_absorbed = {
+    raw: D_raw,
+    noise: 0,
+    stable: D_raw,
+    hdf: "compress(" + D_raw + ")"
+};
+
+// Übergabe an ROM
+const frame = ROM_archive(D_absorbed);
+const romSnap = rom.store(frame);
+
+// Ausgabe
+window.onload = () => {
+    document.getElementById("id").innerText =
+        JSON.stringify(ID_CHDSK_81E, null, 2);
+
+    document.getElementById("absorber").innerText =
+        JSON.stringify(D_absorbed, null, 2);
+
+    document.getElementById("rom").innerText =
+        JSON.stringify({ frame, romSnap }, null, 2);
+};
+</script>
+
 </head>
 
 <body>
 
-<h1>ROM · Axiom‑12 · Archiv</h1>
+<h1>CHDSK · Axiom‑5 · Fehlerabsorber</h1>
 
-<pre id="status">Lade ROM…</pre>
+<div class="box">
 
-<script type="module">
-import { ROMModule } from "./ROM.module.js";
-import { ROM_archive } from "./ROM.archive.js";
-import { ROM_ID } from "./ROM.ID.js";
+    <div class="whirl">🌀</div>
 
-const rom = new ROMModule();
+    <h2>CHDSK Identität</h2>
+    <pre id="id">Lade CHDSK…</pre>
 
-// Beispiel: CHDSK liefert stabilisierte Daten
-const chdsk_output = {
-    raw: 77,
-    stable: 77,
-    noise: 0,
-    hdf: "compress(77)"
-};
+    <h2>Absorber · HDF · Stabil</h2>
+    <pre id="absorber">Berechne…</pre>
 
-const frame = ROM_archive(chdsk_output);
-const snap = rom.store(frame);
+    <h2>Übergabe an ROM</h2>
+    <pre id="rom">Warte…</pre>
 
-document.getElementById("status").innerText =
-    JSON.stringify({ ROM_ID, frame, snap }, null, 2);
-</script>
+</div>
 
 </body>
 </html>
