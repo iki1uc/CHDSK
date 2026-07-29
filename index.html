@@ -1,74 +1,42 @@
-<div class="id-chdsk-81e">
-    <div class="header">
-        <span class="whirl">🌀</span>
-        <h2>CHDSK <span class="level">81E</span></h2>
-    </div>
-
-    <div class="section">
-        <h3>Identität</h3>
-        <p class="desc">Vater‑Cache‑Achse · Fehlerabsorber · Stabilisationsanker</p>
-        <p class="motto">„Ich nehme die Fehler, bevor sie entstehen.“</p>
-    </div>
-
-    <div class="section">
-        <h3>Mathematische Signatur</h3>
-        <pre class="math">
-Absorber:  A(D) = D_raw
-HDF:       H(D) = compress(D_raw)
-Transfer:  T(D_stable → POOL)
-Stabil:    lim D_noise → 0
-        </pre>
-    </div>
-
-    <div class="section">
-        <h3>Whirl‑Signatur</h3>
-        <pre class="whirl-code">🌀   @))>~~</pre>
-    </div>
-</div>
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>ROM · Axiom‑12 · Archiv</title>
 
 <style>
-.id-chdsk-81e {
-    background:#0d0d0d;
-    color:#e6e6e6;
-    padding:25px;
-    border-radius:14px;
-    border:1px solid #333;
-    font-family:Arial, sans-serif;
-    max-width:650px;
-    box-shadow:0 0 20px rgba(0,0,0,0.6);
-}
-.header {
-    display:flex;
-    align-items:center;
-    gap:15px;
-}
-.whirl {
-    font-size:48px;
-}
-.level {
-    background:#4af;
-    color:#000;
-    padding:4px 10px;
-    border-radius:6px;
-    font-size:18px;
-}
-.section {
-    margin-top:20px;
-}
-.math, .whirl-code {
-    background:#000;
-    padding:15px;
-    border-radius:8px;
-    border:1px solid #333;
-    font-size:15px;
-}
-.motto {
-    font-style:italic;
-    font-size:18px;
-    margin-top:10px;
-}
-.desc {
-    font-size:16px;
-    margin-bottom:10px;
-}
+body { background:#000; color:#0f0; font-family:monospace; padding:40px; }
+pre { background:#111; padding:20px; border-left:3px solid #0f0; }
 </style>
+</head>
+
+<body>
+
+<h1>ROM · Axiom‑12 · Archiv</h1>
+
+<pre id="status">Lade ROM…</pre>
+
+<script type="module">
+import { ROMModule } from "./ROM.module.js";
+import { ROM_archive } from "./ROM.archive.js";
+import { ROM_ID } from "./ROM.ID.js";
+
+const rom = new ROMModule();
+
+// Beispiel: CHDSK liefert stabilisierte Daten
+const chdsk_output = {
+    raw: 77,
+    stable: 77,
+    noise: 0,
+    hdf: "compress(77)"
+};
+
+const frame = ROM_archive(chdsk_output);
+const snap = rom.store(frame);
+
+document.getElementById("status").innerText =
+    JSON.stringify({ ROM_ID, frame, snap }, null, 2);
+</script>
+
+</body>
+</html>
